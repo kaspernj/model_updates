@@ -48,7 +48,7 @@ end
 Do like this in your views if you are using HAML:
 
 ```haml
-.model-updates{data: model.model_updates_data_attrs(:updated_at)}
+.model-updates{data: {model_updates: model.model_updates_data_attrs(:updated_at)}}
   = model.updated_at
 ```
 
