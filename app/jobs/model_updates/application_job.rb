@@ -1,4 +1,2 @@
-module ModelUpdates
-  class ApplicationJob < ActiveJob::Base
-  end
+class ModelUpdates::ApplicationJob < ActiveJob::Base
 end

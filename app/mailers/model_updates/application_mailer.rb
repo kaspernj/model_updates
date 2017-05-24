@@ -1,6 +1,4 @@
-module ModelUpdates
-  class ApplicationMailer < ActionMailer::Base
-    default from: "from@example.com"
-    layout "mailer"
-  end
+class ModelUpdates::ApplicationMailer < ActionMailer::Base
+  default from: "from@example.com"
+  layout "mailer"
 end

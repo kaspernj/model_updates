@@ -8,6 +8,7 @@ gemspec
 group :development, :test do
   gem "best_practice_project", "0.0.10", require: false
   gem "rubocop", "0.49.0", require: false
+  gem "sqlite3", "1.3.13"
 end
 
 # Declare any dependencies that are still in development here instead of in

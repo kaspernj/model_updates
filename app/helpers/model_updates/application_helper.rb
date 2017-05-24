@@ -1,4 +1,2 @@
-module ModelUpdates
-  module ApplicationHelper
-  end
+module ModelUpdates::ApplicationHelper
 end

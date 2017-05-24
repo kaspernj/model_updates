@@ -1,5 +1,3 @@
-module ModelUpdates
-  class ApplicationRecord < ActiveRecord::Base
-    self.abstract_class = true
-  end
+class ModelUpdates::ApplicationRecord < ActiveRecord::Base
+  self.abstract_class = true
 end
