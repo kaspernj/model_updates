@@ -7,7 +7,10 @@ gemspec
 
 group :development, :test do
   gem "best_practice_project", "0.0.10", require: false
+  gem "capybara", "2.13.0"
+  gem "capybara-webkit", "1.14.0"
   gem "factory_girl_rails", "4.8.0"
+  gem "jquery-rails", "4.3.1"
   gem "rspec-rails", "3.6.0"
   gem "rubocop", "0.49.0", require: false
   gem "sqlite3", "1.3.13"

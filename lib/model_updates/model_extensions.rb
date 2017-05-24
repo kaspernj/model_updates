@@ -9,7 +9,7 @@ module ModelUpdates::ModelExtensions
         changes = {}
 
         args.fetch(:attributes).each do |attribute_name|
-          method_changed = "#{attribute_name}_changed?"
+          method_changed = "saved_change_to_#{attribute_name}?"
           next unless __send__(method_changed)
           changes[attribute_name] = __send__(attribute_name)
         end
