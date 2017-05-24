@@ -16,11 +16,11 @@ end
 
 APP_RAKEFILE = File.expand_path("../spec/dummy/Rakefile", __FILE__)
 load 'rails/tasks/engine.rake'
-
-
 load 'rails/tasks/statistics.rake'
-
-
 
 require 'bundler/gem_tasks'
 
+if Rails.env.development? || Rails.env.test?
+  require "best_practice_project"
+  BestPracticeProject.load_tasks
+end
