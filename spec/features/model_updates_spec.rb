@@ -10,6 +10,9 @@ describe ModelUpdates do
     expect(current_path).to eq task_path(task)
 
     task.update_attributes!(name: "New name")
+
+    sleep 0.5
+
     expect(find(".model-updates").text).to eq "New name"
   end
 end
