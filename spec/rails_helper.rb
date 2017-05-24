@@ -8,6 +8,7 @@ require "rspec/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
 
 Capybara.javascript_driver = :webkit
+Capybara.server = :puma
 
 Capybara::Webkit.configure do |config|
   config.raise_javascript_errors = true

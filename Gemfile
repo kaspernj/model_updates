@@ -11,6 +11,8 @@ group :development, :test do
   gem "capybara-webkit", "1.14.0"
   gem "factory_girl_rails", "4.8.0"
   gem "jquery-rails", "4.3.1"
+  gem "puma", "3.8.2"
+  gem "redis", "3.3.3"
   gem "rspec-rails", "3.6.0"
   gem "rubocop", "0.49.0", require: false
   gem "sqlite3", "1.3.13"

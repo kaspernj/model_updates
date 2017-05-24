@@ -15,10 +15,14 @@ $(document).ready(function() {
   // Subscribe to the found models
   for(var model_type in model_subscriptions) {
     for(var model_id in model_subscriptions[model_type]) {
+      console.log("Subscribing " + model_type + "(" + model_id + ")")
+
       App.cable.subscriptions.create(
         {channel: "ModelUpdates::ModelChannel", id: model_id, model: model_type},
         {
           received: function(json) {
+            console.log("Update from: " + json.model + "(" + json.id + ")")
+
             for(key in json.changes) {
               element = $(".model-updates[data-model-updates-model='" + json.model + "'][data-model-updates-id='" + json.id + "'][data-model-updates-key='" + key + "']")
 

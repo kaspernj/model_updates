@@ -97,6 +97,7 @@ GEM
       ast (~> 2.2)
     powerpack (0.1.1)
     public_suffix (2.0.5)
+    puma (3.8.2)
     rack (2.0.3)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -126,6 +127,7 @@ GEM
     rainbow (2.2.2)
       rake
     rake (12.0.0)
+    redis (3.3.3)
     rspec-core (3.6.0)
       rspec-support (~> 3.6.0)
     rspec-expectations (3.6.0)
@@ -181,6 +183,8 @@ DEPENDENCIES
   factory_girl_rails (= 4.8.0)
   jquery-rails (= 4.3.1)
   model_updates!
+  puma (= 3.8.2)
+  redis (= 3.3.3)
   rspec-rails (= 3.6.0)
   rubocop (= 0.49.0)
   sqlite3 (= 1.3.13)
