@@ -9,7 +9,12 @@ module ModelUpdates::ModelExtensions
         changes = {}
 
         args.fetch(:attributes).each do |attribute_name|
-          method_changed = "saved_change_to_#{attribute_name}?"
+          if Rails::VERSION::MAJOR >= 5 && Rails::VERSION::MINOR >= 1
+            method_changed = "saved_change_to_#{attribute_name}?"
+          else
+            method_changed = "#{attribute_name}_changed?"
+          end
+
           next unless __send__(method_changed)
           changes[attribute_name] = __send__(attribute_name)
         end
