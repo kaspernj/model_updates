@@ -31,6 +31,20 @@ module ModelUpdates::ModelExtensions
     end
   end
 
+  def model_updates_attrs(key, more = {})
+    attrs = {
+      model_updates_id: id,
+      model_updates_model: self.class.name,
+      model_updates_key: key
+    }
+
+    more.each do |key, value|
+      attrs["model_updates_#{key}"] = value
+    end
+
+    attrs
+  end
+
   def model_updates_data_attrs(key, more = {})
     {
       id: id,
