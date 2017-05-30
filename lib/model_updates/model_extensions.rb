@@ -38,8 +38,8 @@ module ModelUpdates::ModelExtensions
       model_updates_key: key
     }
 
-    more.each do |key, value|
-      attrs["model_updates_#{key}"] = value
+    more.each do |hash_key, hash_value|
+      attrs["model_updates_#{hash_key}"] = hash_value
     end
 
     attrs
