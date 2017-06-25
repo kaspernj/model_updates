@@ -62,6 +62,36 @@ Or like this in ERB:
 
 Now that element should update automatically when the model is changed
 
+## Callbacks
+
+You can also do a callback, once the value is changed.
+
+```erb
+<div class="model-updates" data-model-updates-model="Model" data-model-updates-id="1" data-model-updates-key="updated_at" data-model-updates-callback="myCallback">
+  <%= model.updated_at %>
+</div>
+```
+
+```js
+function myCallback(data) {
+  if (data.value == "something") {
+    data.element.text("Test: " + data.value)
+  } else {
+    data.element.text(data.value)
+  }
+}
+```
+
+The data element is formatted like this:
+```
+data = {
+  changes: "A hash of all the registered changes (multiple attributes might by updated than just the one subscribed to in the same update call)",
+  element: "Your original element with the class 'model-updates'",
+  id: "The ID of the model",
+  key: "The key (attribute name) which was updated",
+  value: "The new value of the attribute"
+}
+```
 
 ## Contributing
 
