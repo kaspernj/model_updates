@@ -24,22 +24,28 @@ $(document).ready(function() {
             console.log("Update from: " + json.model + "(" + json.id + ")")
 
             for(key in json.changes) {
-              element = $(".model-updates[data-model-updates-model='" + json.model + "'][data-model-updates-id='" + json.id + "'][data-model-updates-key='" + key + "']")
+              elements = $(".model-updates[data-model-updates-model='" + json.model + "'][data-model-updates-id='" + json.id + "'][data-model-updates-key='" + key + "']")
+              elements.each(function() {
+                element = $(this)
 
-              if (element.data("model-updates-callback")) {
-                function_to_call = element.data("model-updates-callback")
+                if (element.data("model-updates-callback")) {
+                  function_to_call = element.data("model-updates-callback")
 
-                window[function_to_call]({
-                  changes: json.changes,
-                  element: element,
-                  id: json.id,
-                  key: key,
-                  model: json.model,
-                  value: json.changes[key]
-                })
-              } else {
-                element.text(json.changes[key])
-              }
+                  window[function_to_call]({
+                    changes: json.changes,
+                    element: element,
+                    id: json.id,
+                    key: key,
+                    model: json.model,
+                    value: json.changes[key]
+                  })
+                } else if(json.changes[key]) {
+                  element.text(json.changes[key])
+                } else {
+                  // Needs to check if it has a value, else it will print out "null" instead of nothing.
+                  element.text("")
+                }
+              })
             }
           }
         }
