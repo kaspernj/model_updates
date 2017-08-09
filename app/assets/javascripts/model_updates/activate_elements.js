@@ -18,7 +18,7 @@ $(document).ready(function() {
       console.log("Subscribing " + model_type + "(" + model_id + ")")
 
       App.cable.subscriptions.create(
-        {channel: "ModelUpdates::ModelChannel", id: model_id, model: model_type},
+        {channel: "ModelUpdates::UpdateChannel", id: model_id, model: model_type},
         {
           received: function(json) {
             console.log("Update from: " + json.model + "(" + json.id + ")")

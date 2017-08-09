@@ -20,13 +20,24 @@ module ModelUpdates::ModelExtensions
         end
 
         if changes.any?
-          ModelUpdates::ModelChannel.broadcast_to(
+          ModelUpdates::UpdateChannel.broadcast_to(
             self,
             id: id,
             model: self.class.name,
             changes: changes
           )
         end
+      end
+    end
+
+    def model_updates_broadcast_created
+      after_create do
+        channel_name = "ModelUpdatesCreate#{name}"
+
+        ModelUpdates::CreateChannel.broadcast(
+          channel_name,
+          id: id
+        )
       end
     end
   end
