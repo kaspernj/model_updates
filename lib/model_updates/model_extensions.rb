@@ -4,7 +4,13 @@ module ModelUpdates::ModelExtensions
   end
 
   module ClassMethods
+    def model_updates_data
+      @_model_updates ||= {}
+    end
+
     def model_updates_broadcast_attributes(args)
+      model_updates_data[:attributes] = args.fetch(:attributes)
+
       after_save do
         changes = {}
 
@@ -31,12 +37,18 @@ module ModelUpdates::ModelExtensions
     end
 
     def model_updates_broadcast_created
-      after_create do
-        channel_name = "ModelUpdatesCreate#{name}"
+      after_commit on: :create do |model|
+        channel_name = "ModelUpdatesCreate#{model.class.name}"
 
-        ModelUpdates::CreateChannel.broadcast(
+        attributes = {}
+        self.class.model_updates_data[:attributes].each do |attribute_name|
+          attributes[attribute_name] = __send__(attribute_name)
+        end
+
+        ActionCable.server.broadcast(
           channel_name,
-          id: id
+          id: id,
+          attributes: attributes
         )
       end
     end
