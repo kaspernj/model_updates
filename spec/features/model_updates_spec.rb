@@ -11,7 +11,9 @@ describe ModelUpdates do
 
     task.update!(name: "New name")
 
-    sleep 0.5
+    sleep 1
+
+    # puts "Console messages: #{page.driver.console_messages}"
 
     expect(find(".model-updates").text).to eq "New name"
   end
