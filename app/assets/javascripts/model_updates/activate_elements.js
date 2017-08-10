@@ -34,7 +34,7 @@ $(document).ready(function() {
   }
 
   for(var model in modelDestroys) {
-    for(id in modelDestroys[model]) {
+    for(var id in modelDestroys[model]) {
       ModelUpdates.Destroy.connect({
         "id": id,
         "model": model
