@@ -11,7 +11,7 @@ module ModelUpdates::ModelExtensions
     def model_updates_broadcast_attributes(args)
       model_updates_data[:attributes] = args.fetch(:attributes)
 
-      after_save do
+      after_commit on: :update do |model|
         changes = {}
 
         args.fetch(:attributes).each do |attribute_name|
@@ -27,9 +27,9 @@ module ModelUpdates::ModelExtensions
 
         if changes.any?
           ModelUpdates::UpdateChannel.broadcast_to(
-            self,
+            model,
             id: id,
-            model: self.class.name,
+            model: model.class.name,
             changes: changes
           )
         end
@@ -41,13 +41,29 @@ module ModelUpdates::ModelExtensions
         channel_name = "ModelUpdatesCreate#{model.class.name}"
 
         attributes = {}
-        self.class.model_updates_data[:attributes].each do |attribute_name|
+        model.class.model_updates_data[:attributes].each do |attribute_name|
           attributes[attribute_name] = __send__(attribute_name)
         end
 
         ActionCable.server.broadcast(
           channel_name,
           id: id,
+          attributes: attributes
+        )
+      end
+    end
+
+    def model_updates_broadcast_destroyed
+      after_commit on: :destroy do |model|
+        attributes = {}
+        model.class.model_updates_data[:attributes].each do |attribute_name|
+          attributes[attribute_name] = __send__(attribute_name)
+        end
+
+        ModelUpdates::DestroyChannel.broadcast_to(
+          model,
+          id: id,
+          model: model.class.name,
           attributes: attributes
         )
       end

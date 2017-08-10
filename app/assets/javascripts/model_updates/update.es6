@@ -1,12 +1,12 @@
 ModelUpdates.Update = class Update {
   static connect(args) {
-    ModelUpdates.debug("ModelUpdates: Connecting to " + args.model + "(" + args.id + ")")
+    ModelUpdates.debug("Connecting to update channel for " + args.model + "(" + args.id + ")")
 
     App.cable.subscriptions.create(
       {channel: "ModelUpdates::UpdateChannel", id: args.id, model: args.model},
       {
         received: function(json) {
-          ModelUpdates.debug("ModelUpdates: Received update for " + json.model + "(" + json.id + ")")
+          ModelUpdates.debug("Received update for " + json.model + "(" + json.id + ")")
 
           for(var key in json.changes) {
             var elements = $(".model-updates[data-model-updates-model='" + json.model + "'][data-model-updates-id='" + json.id + "'][data-model-updates-key='" + key + "']")
