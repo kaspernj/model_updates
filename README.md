@@ -20,9 +20,6 @@ Or install it yourself as:
 $ gem install model_updates
 ```
 
-
-## Usage
-
 Include it in your JavaScript:
 
 ```javascript
@@ -45,7 +42,18 @@ class Model < ApplicationRecord
 end
 ```
 
-Do like this in your views if you are using HAML:
+If you also want creates broadcasted:
+```ruby
+class Model < ApplicationRecord
+  model_updates_broadcast_attributes attributes: [:updated_at]
+  model_updates_broadcast_created
+end
+```
+
+## Usage
+
+
+Do like this in your views if you are using HAML to receive automatic updates:
 
 ```haml
 .model-updates{data: {model_updates: model.model_updates_data_attrs(:updated_at)}}
@@ -91,6 +99,14 @@ data = {
   key: "The key (attribute name) which was updated",
   value: "The new value of the attribute"
 }
+```
+
+You can receive create callbacks like this:
+
+```js
+ModelUpdates.Create.connect({model: "MyModel", onCreated: function(data) {
+  console.log("New MyModel was created with ID: " + data.id)
+})
 ```
 
 ## Contributing

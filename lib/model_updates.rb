@@ -1,4 +1,5 @@
 require "model_updates/engine"
+require "sprockets/es6"
 
 module ModelUpdates
   path = "#{File.dirname(__FILE__)}/model_updates"

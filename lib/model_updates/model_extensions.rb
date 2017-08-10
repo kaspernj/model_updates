@@ -4,7 +4,13 @@ module ModelUpdates::ModelExtensions
   end
 
   module ClassMethods
+    def model_updates_data
+      @_model_updates ||= {}
+    end
+
     def model_updates_broadcast_attributes(args)
+      model_updates_data[:attributes] = args.fetch(:attributes)
+
       after_save do
         changes = {}
 
@@ -15,18 +21,35 @@ module ModelUpdates::ModelExtensions
             method_changed = "#{attribute_name}_changed?"
           end
 
-          next unless __send__(method_changed)
+          next if respond_to?(method_changed) && !__send__(method_changed)
           changes[attribute_name] = __send__(attribute_name)
         end
 
         if changes.any?
-          ModelUpdates::ModelChannel.broadcast_to(
+          ModelUpdates::UpdateChannel.broadcast_to(
             self,
             id: id,
             model: self.class.name,
             changes: changes
           )
         end
+      end
+    end
+
+    def model_updates_broadcast_created
+      after_commit on: :create do |model|
+        channel_name = "ModelUpdatesCreate#{model.class.name}"
+
+        attributes = {}
+        self.class.model_updates_data[:attributes].each do |attribute_name|
+          attributes[attribute_name] = __send__(attribute_name)
+        end
+
+        ActionCable.server.broadcast(
+          channel_name,
+          id: id,
+          attributes: attributes
+        )
       end
     end
   end
