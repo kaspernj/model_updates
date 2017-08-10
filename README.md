@@ -50,6 +50,14 @@ class Model < ApplicationRecord
 end
 ```
 
+Or destroys:
+```ruby
+class Model < ApplicationRecord
+  model_updates_broadcast_attributes attributes: [:updated_at]
+  model_updates_broadcast_destroyed
+end
+```
+
 ## Usage
 
 
@@ -106,6 +114,24 @@ You can receive create callbacks like this:
 ```js
 ModelUpdates.Create.connect({model: "MyModel", onCreated: function(data) {
   console.log("New MyModel was created with ID: " + data.id)
+})
+```
+
+If you want an element automatically removed on destroy:
+```erb
+<div class="model-updates" data-model-updates-model="<%= model.class.name %>" data-model-updates-id="<%= model.id %>" data-model-updates-remove-on-destroy="true">
+  <%= model.updated_at %>
+</div>
+```
+
+You can also manually listen when a model gets destroyed:
+```js
+ModelUpdates.Destroy.connect({
+  "id": data.id,
+  "model": "BuildCommandExecution",
+  "onDestroyed": function(data) {
+    console.log("Model destroyed: " + data.id)
+  }
 })
 ```
 

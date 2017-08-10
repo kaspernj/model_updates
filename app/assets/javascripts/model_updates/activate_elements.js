@@ -1,23 +1,43 @@
 $(document).ready(function() {
   // Find all models that should be subscribed to
-  model_subscriptions = {}
+  modelSubscriptions = {}
+  modelDestroys = {}
 
   $(".model-updates").each(function() {
-    model_type = $(this).data("model-updates-model")
-    model_id = $(this).data("model-updates-id")
+    element = $(this)
 
-    if (!model_subscriptions[model_type])
-      model_subscriptions[model_type] = {}
+    model = element.data("model-updates-model")
+    id = element.data("model-updates-id")
 
-    model_subscriptions[model_type][model_id] = {}
+    if (!modelSubscriptions[model])
+      modelSubscriptions[model] = {}
+
+    if (element.data("model-updates-key"))
+      modelSubscriptions[model][id] = true
+
+    if (element.data("model-updates-remove-on-destroy")) {
+      if (!modelDestroys[model])
+        modelDestroys[model] = {}
+
+      modelDestroys[model][id] = true
+    }
   })
 
   // Subscribe to the found models
-  for(var model_type in model_subscriptions) {
-    for(var model_id in model_subscriptions[model_type]) {
+  for(var model in modelSubscriptions) {
+    for(var id in modelSubscriptions[model]) {
       ModelUpdates.Update.connect({
-        "id": model_id,
-        "model": model_type
+        "id": id,
+        "model": model
+      })
+    }
+  }
+
+  for(var model in modelDestroys) {
+    for(id in modelDestroys[model]) {
+      ModelUpdates.Destroy.connect({
+        "id": id,
+        "model": model
       })
     }
   }
