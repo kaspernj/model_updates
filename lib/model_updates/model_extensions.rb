@@ -21,7 +21,7 @@ module ModelUpdates::ModelExtensions
             method_changed = "#{attribute_name}_changed?"
           end
 
-          next unless __send__(method_changed)
+          next if respond_to?(method_changed) && !__send__(method_changed)
           changes[attribute_name] = __send__(attribute_name)
         end
 
