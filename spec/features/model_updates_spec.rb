@@ -9,7 +9,7 @@ describe ModelUpdates do
     expect(page).to have_http_status :success
     expect(current_path).to eq task_path(task)
 
-    task.update_attributes!(name: "New name")
+    task.update!(name: "New name")
 
     sleep 0.5
 
