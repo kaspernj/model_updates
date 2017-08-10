@@ -34,6 +34,25 @@ class ApplicationRecord < ActiveRecord::Base
 end
 ```
 
+Add required CanCan access methods to your `ApplicationCable::Channel`:
+```ruby
+class ApplicationCable::Channel < ActionCable::Channel::Base
+private
+
+  delegate :authorize!, :can?, to: :current_ability
+
+  def current_ability
+    @_current_ability ||= PeakFlowAbility.new(user: current_user)
+  end
+
+  def current_user
+    @_current_user ||= env["warden"].user
+  end
+end
+```
+
+You can define `authorize!(ability, model)` yourself, if you aren't using CanCan.
+
 Choose which attributes should be broadcasted automatically:
 
 ```ruby
