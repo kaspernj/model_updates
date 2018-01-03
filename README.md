@@ -51,6 +51,15 @@ private
 end
 ```
 
+In order to get the current user with Devise, you also have to add the following `config/initializers/warden_hooks.rb`:
+```ruby
+Warden::Manager.after_set_user do |user, auth, opts|
+  scope = opts[:scope]
+  auth.cookies.signed["#{scope}.id"] = user.id
+  auth.cookies.signed["#{scope}.expires_at"] = 70.minutes.from_now
+end
+```
+
 You can define `authorize!(ability, model)` yourself, if you aren't using CanCan.
 
 Choose which attributes should be broadcasted automatically:
