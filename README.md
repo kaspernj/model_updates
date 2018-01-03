@@ -88,6 +88,7 @@ end
 
 ## Usage
 
+Update content on page live automatically
 
 Do like this in your views if you are using HAML to receive automatic updates:
 
@@ -161,6 +162,14 @@ ModelUpdates.Destroy.connect({
     console.log("Model destroyed: " + data.id)
   }
 })
+```
+
+### Live updating new elements added dynamically after page load
+
+You can refresh elements with a simple call like this:
+
+```js
+ModelUpdates.update()
 ```
 
 ## Contributing
