@@ -13,6 +13,7 @@ class ModelUpdates {
   }
 
   static update() {
+    ModelUpdates.debug("Static update called")
     ModelUpdates.current().update()
   }
 
@@ -24,10 +25,11 @@ class ModelUpdates {
   }
 
   update() {
+    ModelUpdates.debug("Instance method update called")
     this.activator().update()
   }
 }
 
 ModelUpdates.configuration = {
-  "debug": true
+  "debug": false
 }

@@ -5,4 +5,6 @@
 //= require model_updates/formatters
 //= require model_updates/update
 
-ModelUpdates.update()
+$(document).ready(function() {
+  ModelUpdates.update()
+})
