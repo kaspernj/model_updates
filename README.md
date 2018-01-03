@@ -42,7 +42,7 @@ private
   delegate :authorize!, :can?, to: :current_ability
 
   def current_ability
-    @_current_ability ||= PeakFlowAbility.new(user: current_user)
+    @_current_ability ||= CanCanAbility.new(user: current_user)
   end
 
   def current_user
