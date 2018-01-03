@@ -9,11 +9,14 @@ describe ModelUpdates do
     expect(page).to have_http_status :success
     expect(current_path).to eq task_path(task)
 
+    sleep 1
+
     task.update!(name: "New name")
 
     sleep 1
 
-    # puts "Console messages: #{page.driver.console_messages}"
+    # puts "Console messages:"
+    # puts page.driver.console_messages.map { |data| data.fetch(:message) }.join("\n")
 
     expect(find(".model-updates").text).to eq "New name"
   end
