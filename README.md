@@ -172,6 +172,13 @@ You can refresh elements with a simple call like this:
 ModelUpdates.update()
 ```
 
+### Debugging
+
+In case you want to enable debug output from ModelUpdates from JavaScript:
+```js
+ModelUpdates.configuration.debug = true
+```
+
 ## Contributing
 
 Contribution directions go here.
