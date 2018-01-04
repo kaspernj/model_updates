@@ -11,26 +11,29 @@ module ModelUpdates::ModelExtensions
     def model_updates_broadcast_attributes(args)
       model_updates_data[:attributes] = args.fetch(:attributes)
 
-      after_commit on: :update do |model|
-        changes = {}
+      # Need to remember what changes before callbacks, since it might get changed by gems like AwesomeNestedSet before after_commit is called
+      before_save on: :update do
+        attribute_changes = {}
 
         args.fetch(:attributes).each do |attribute_name|
-          if Rails::VERSION::MAJOR >= 5 && Rails::VERSION::MINOR >= 1
-            method_changed = "saved_change_to_#{attribute_name}?"
-          else
-            method_changed = "#{attribute_name}_changed?"
-          end
-
+          method_changed = "#{attribute_name}_changed?"
           next if respond_to?(method_changed) && !__send__(method_changed)
-          changes[attribute_name] = __send__(attribute_name)
+          attribute_changes[attribute_name] = __send__(attribute_name)
         end
 
-        if changes.any?
+        @_model_updates_changes = attribute_changes
+      end
+
+      after_commit on: :update do |model|
+        attribute_changes = @_model_updates_changes
+        @_model_updates_changes = nil
+
+        if attribute_changes.any?
           ModelUpdates::UpdateChannel.broadcast_to(
             model,
             id: id,
             model: model.class.name,
-            changes: changes
+            changes: attribute_changes
           )
         end
       end

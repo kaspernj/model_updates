@@ -39,12 +39,12 @@ Add required CanCan access methods to your `ApplicationCable::Channel`:
 class ApplicationCable::Channel < ActionCable::Channel::Base
 private
 
-  delegate :authorize!, :can?, to: :current_ability
-
+  # Used to authorize which resources the user can read from (security)
   def current_ability
     @_current_ability ||= CanCanAbility.new(user: current_user)
   end
 
+  # Get user from Devise
   def current_user
     @_current_user ||= env["warden"].user
   end
@@ -59,8 +59,6 @@ Warden::Manager.after_set_user do |user, auth, opts|
   auth.cookies.signed["#{scope}.expires_at"] = 70.minutes.from_now
 end
 ```
-
-You can define `authorize!(ability, model)` yourself, if you aren't using CanCan.
 
 Choose which attributes should be broadcasted automatically:
 

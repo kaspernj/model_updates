@@ -58,6 +58,7 @@ GEM
     best_practice_project (0.0.10)
       auto_autoloader (>= 0.0.5)
     builder (3.2.3)
+    cancancan (2.1.2)
     capybara (2.13.0)
       addressable
       mime-types (>= 1.16)
@@ -192,6 +193,7 @@ PLATFORMS
 
 DEPENDENCIES
   best_practice_project (= 0.0.10)
+  cancancan (= 2.1.2)
   capybara (= 2.13.0)
   capybara-webkit (= 1.14.0)
   factory_girl_rails (= 4.8.0)
