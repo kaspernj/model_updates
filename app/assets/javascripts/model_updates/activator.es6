@@ -46,44 +46,52 @@ ModelUpdates.Activator = class Activator {
   updateSubscribedUpdates() {
     ModelUpdates.debug("Activator#updateSubscribedUpdates called")
 
+    var connectToModels = {}
     for(var model in this.modelSubscriptions) {
+      var ids = []
+      connectToModels[model] = ids
+
       for(var id in this.modelSubscriptions[model]) {
         if (!this.connectedUpdates[model])
           this.connectedUpdates[model] = {}
 
         if (!this.connectedUpdates[model][id]) {
           this.connectedUpdates[model][id] = true
-
-          ModelUpdates.debug("Add subscription for update of " + model + "(" + id + ")")
-
-          ModelUpdates.Update.connect({
-            "id": id,
-            "model": model
-          })
+          ids.push(id)
         }
       }
     }
+
+    ModelUpdates.debug("Add subscription for update of " + JSON.stringify(connectToModels))
+
+    ModelUpdates.Update.connect({
+      "ids": connectToModels
+    })
   }
 
   updateSubscribedDestroys() {
     ModelUpdates.debug("Activator#updateSubscribedDestroys called")
 
+    var connectToModels = {}
     for(var model in this.modelDestroys) {
+      var ids = []
+      connectToModels[model] = ids
+
       for(var id in this.modelDestroys[model]) {
         if (!this.connectedDestroyes[model])
           this.connectedDestroyes[model] = {}
 
         if (!this.connectedDestroyes[model][id]) {
           this.connectedDestroyes[model][id] = true
-
-          ModelUpdates.debug("Add subscription for destruction of " + model + "(" + id + ")")
-
-          ModelUpdates.Destroy.connect({
-            "id": id,
-            "model": model
-          })
+          ids.push(id)
         }
       }
     }
+
+    ModelUpdates.debug("Add subscription for destruction of " + JSON.stringify(connectToModels))
+
+    ModelUpdates.Destroy.connect({
+      "ids": connectToModels
+    })
   }
 }

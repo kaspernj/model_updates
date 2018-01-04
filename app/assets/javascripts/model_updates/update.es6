@@ -1,9 +1,9 @@
 ModelUpdates.Update = class Update {
   static connect(args) {
-    ModelUpdates.debug("Connecting to update channel for " + args.model + "(" + args.id + ")")
+    ModelUpdates.debug("Connecting to update channel for " + JSON.stringify(args.ids))
 
     App.cable.subscriptions.create(
-      {channel: "ModelUpdates::UpdateChannel", id: args.id, model: args.model},
+      {channel: "ModelUpdates::UpdateChannel", ids: args.ids},
       {
         received: function(json) {
           ModelUpdates.debug("Received update for " + json.model + "(" + json.id + ")")
