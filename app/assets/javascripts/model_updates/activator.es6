@@ -62,11 +62,8 @@ ModelUpdates.Activator = class Activator {
       }
     }
 
-    ModelUpdates.debug("Add subscription for update of " + JSON.stringify(connectToModels))
-
-    ModelUpdates.Update.connect({
-      "ids": connectToModels
-    })
+    if (Object.keys(connectToModels).length > 0)
+      ModelUpdates.Update.connect({"ids": connectToModels})
   }
 
   updateSubscribedDestroys() {
@@ -88,10 +85,7 @@ ModelUpdates.Activator = class Activator {
       }
     }
 
-    ModelUpdates.debug("Add subscription for destruction of " + JSON.stringify(connectToModels))
-
-    ModelUpdates.Destroy.connect({
-      "ids": connectToModels
-    })
+    if (Object.keys(connectToModels).length > 0)
+      ModelUpdates.Destroy.connect({"ids": connectToModels})
   }
 }

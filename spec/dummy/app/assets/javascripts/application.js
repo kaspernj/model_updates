@@ -3,4 +3,4 @@
 //= require cable
 //= require model_updates
 
-ModelUpdates.configuration["debug"] = true
+// ModelUpdates.configuration["debug"] = true
