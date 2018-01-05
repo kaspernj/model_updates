@@ -4,7 +4,7 @@ class ModelUpdates::UpdateChannel < ApplicationCable::Channel
       models = model_class.safe_constantize.accessible_by(current_ability).where(id: ids)
 
       ids_found = {}
-      models.each do |model|
+      models.find_each do |model|
         next if ids_found.key?(model.id)
         ids_found[model.id] = true
 

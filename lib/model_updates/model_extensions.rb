@@ -33,7 +33,8 @@ module ModelUpdates::ModelExtensions
             model,
             id: id,
             model: model.class.name,
-            changes: attribute_changes
+            changes: attribute_changes,
+            type: :update
           )
         end
       end
@@ -63,11 +64,12 @@ module ModelUpdates::ModelExtensions
           attributes[attribute_name] = __send__(attribute_name)
         end
 
-        ModelUpdates::DestroyChannel.broadcast_to(
+        ModelUpdates::UpdateChannel.broadcast_to(
           model,
           id: id,
           model: model.class.name,
-          attributes: attributes
+          attributes: attributes,
+          type: :destroy
         )
       end
     end
