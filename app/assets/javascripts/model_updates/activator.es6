@@ -3,7 +3,6 @@ ModelUpdates.Activator = class Activator {
     ModelUpdates.debug("Activator constructor")
 
     this.modelSubscriptions = {}
-    this.modelDestroys = {}
     this.connectedUpdates = {}
     this.connectedDestroyes = {}
   }
@@ -12,7 +11,6 @@ ModelUpdates.Activator = class Activator {
     ModelUpdates.debug("Update was called")
     this.updateFoundElements()
     this.updateSubscribedUpdates()
-    this.updateSubscribedDestroys()
   }
 
   updateFoundElements() {
@@ -31,15 +29,7 @@ ModelUpdates.Activator = class Activator {
       if (!that.modelSubscriptions[model])
         that.modelSubscriptions[model] = {}
 
-      if (element.data("model-updates-key"))
-        that.modelSubscriptions[model][id] = true
-
-      if (element.data("model-updates-remove-on-destroy")) {
-        if (!that.modelDestroys[model])
-          that.modelDestroys[model] = {}
-
-        that.modelDestroys[model][id] = true
-      }
+      that.modelSubscriptions[model][id] = true
     })
   }
 
@@ -64,28 +54,5 @@ ModelUpdates.Activator = class Activator {
 
     if (Object.keys(connectToModels).length > 0)
       ModelUpdates.Update.connect({"ids": connectToModels})
-  }
-
-  updateSubscribedDestroys() {
-    ModelUpdates.debug("Activator#updateSubscribedDestroys called")
-
-    var connectToModels = {}
-    for(var model in this.modelDestroys) {
-      var ids = []
-      connectToModels[model] = ids
-
-      for(var id in this.modelDestroys[model]) {
-        if (!this.connectedDestroyes[model])
-          this.connectedDestroyes[model] = {}
-
-        if (!this.connectedDestroyes[model][id]) {
-          this.connectedDestroyes[model][id] = true
-          ids.push(id)
-        }
-      }
-    }
-
-    if (Object.keys(connectToModels).length > 0)
-      ModelUpdates.Destroy.connect({"ids": connectToModels})
   }
 }
