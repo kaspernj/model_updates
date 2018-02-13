@@ -74,7 +74,7 @@ module ModelUpdates::ModelExtensions
       end
     end
 
-    def model_updates_call(event_name, args)
+    def model_updates_call(event_name, args = {})
       ActionCable.server.broadcast(
         "model_updates_events_class_#{name}",
         event_name: event_name,
@@ -85,7 +85,7 @@ module ModelUpdates::ModelExtensions
     end
   end
 
-  def model_updates_call(event_name, args)
+  def model_updates_call(event_name, args = {})
     ActionCable.server.broadcast(
       "model_updates_events_model_#{self.class.name}_model_#{id}",
       event_name: event_name,
