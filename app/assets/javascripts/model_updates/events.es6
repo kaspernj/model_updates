@@ -8,15 +8,6 @@ ModelUpdates.Events = class Events {
     }
   }
 
-  connectModelClass(args, callback) {
-    if (!this.modelClassCallbacks[args.model]) {
-      this.modelClassCallbacks[args.model] = []
-    }
-
-    this.modelClassCallbacks[args.model].push(args)
-    this.callbackData["connect_model_class"].push(args.model)
-  }
-
   connectModel(args, callback) {
     if (!this.modelCallbacks[args.model]) {
       this.modelCallbacks[args.model] = {}
@@ -29,6 +20,15 @@ ModelUpdates.Events = class Events {
     }
 
     this.modelCallbacks[args.model][args.id].push(args)
+  }
+
+  connectModelClass(args, callback) {
+    if (!this.modelClassCallbacks[args.model]) {
+      this.modelClassCallbacks[args.model] = []
+    }
+
+    this.modelClassCallbacks[args.model].push(args)
+    this.callbackData["connect_model_class"].push(args.model)
   }
 
   connect() {
@@ -60,11 +60,7 @@ ModelUpdates.Events = class Events {
       var callback = callbacks[callbackNumber]
 
       if (!callback.name || callback.name == args.event_name) {
-        if (callback.allArgs) {
-          callback.callback(args)
-        } else {
-          callback.callback(args.args)
-        }
+        callback.callback(args)
       }
     }
   }
@@ -77,11 +73,7 @@ ModelUpdates.Events = class Events {
       var callback = callbacks[callbackNumber]
 
       if (!callback.name || callback.name == args.event_name) {
-        if (callback.allArgs) {
-          callback.callback(args)
-        } else {
-          callback.callback(args.args)
-        }
+        callback.callback(args)
       }
     }
   }
