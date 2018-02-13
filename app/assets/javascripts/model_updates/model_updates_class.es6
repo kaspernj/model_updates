@@ -24,6 +24,13 @@ class ModelUpdates {
     return this.activatorElement
   }
 
+  events() {
+    if (!this.eventsElement)
+      this.eventsElement = new ModelUpdates.Events()
+
+    return this.eventsElement
+  }
+
   update() {
     ModelUpdates.debug("Instance method update called")
     this.activator().update()
