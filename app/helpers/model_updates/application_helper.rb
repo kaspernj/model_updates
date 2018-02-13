@@ -1,2 +1,0 @@
-module ModelUpdates::ApplicationHelper
-end

@@ -73,6 +73,27 @@ module ModelUpdates::ModelExtensions
         )
       end
     end
+
+    def model_updates_call(event_name, args)
+      ActionCable.server.broadcast(
+        "model_updates_events_class_#{name}",
+        event_name: event_name,
+        model: name,
+        callback_type: "model_class",
+        args: args
+      )
+    end
+  end
+
+  def model_updates_call(event_name, args)
+    ActionCable.server.broadcast(
+      "model_updates_events_model_#{self.class.name}_model_#{id}",
+      event_name: event_name,
+      id: id,
+      model: self.class.name,
+      callback_type: "model",
+      args: args
+    )
   end
 
   def model_updates_attrs(key, more = {})

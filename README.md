@@ -170,6 +170,38 @@ You can refresh elements with a simple call like this:
 ModelUpdates.update()
 ```
 
+## Events
+
+Call an event on a specific model:
+```ruby
+user = User.find(user_id)
+user.model_updates_call("changed-password", new_password: "test")
+```
+
+Connect to a specific model:
+```js
+ModelUpdates.connectModel("User", userId, "changed-password", function(args) {
+  console.log("User changed his password to: " + args.new_password)
+})
+```
+
+Call an event on a model class:
+```ruby
+User.model_updates_call("changed-password", new_password: "test")
+```
+
+Connect to events called on a models class:
+```js
+ModelUpdates.connectModelClass("User", "changed-password", function(args) {
+  console.log("Someone his password to: " + args.new_password)
+})
+```
+
+Call this at the end of your JavaScript, which will actually connect to all the defined events in a batched way:
+```js
+ModelUpdates.connectEvents()
+```
+
 ### Debugging
 
 In case you want to enable debug output from ModelUpdates from JavaScript:
