@@ -2,30 +2,26 @@ ModelUpdates.Events = class Events {
   constructor() {
     this.modelCallbacks = {}
     this.modelClassCallbacks = {}
-    this.callbackData = {
-      "connect_model_class": [],
-      "connect_model": {}
-    }
+    this.resetCallbackData()
   }
 
   connectModel(args, callback) {
-    if (!this.modelCallbacks[args.model]) {
+    if (!this.modelCallbacks[args.model])
       this.modelCallbacks[args.model] = {}
+
+    if (!this.callbackData["connect_model"][args.model])
       this.callbackData["connect_model"][args.model] = []
-    }
 
-    if (!this.modelCallbacks[args.model][args.id]) {
+    if (!this.modelCallbacks[args.model][args.id])
       this.modelCallbacks[args.model][args.id] = []
-      this.callbackData["connect_model"][args.model].push(args.id)
-    }
 
+    this.callbackData["connect_model"][args.model].push(args.id)
     this.modelCallbacks[args.model][args.id].push(args)
   }
 
   connectModelClass(args, callback) {
-    if (!this.modelClassCallbacks[args.model]) {
+    if (!this.modelClassCallbacks[args.model])
       this.modelClassCallbacks[args.model] = []
-    }
 
     this.modelClassCallbacks[args.model].push(args)
     this.callbackData["connect_model_class"].push(args.model)
@@ -49,6 +45,8 @@ ModelUpdates.Events = class Events {
         }
       }
     )
+
+    this.resetCallbackData()
   }
 
   callModelCallbacks(args) {
@@ -75,6 +73,13 @@ ModelUpdates.Events = class Events {
       if (!callback.name || callback.name == args.event_name) {
         callback.callback(args)
       }
+    }
+  }
+
+  resetCallbackData() {
+    this.callbackData = {
+      "connect_model_class": [],
+      "connect_model": {}
     }
   }
 }
