@@ -12,10 +12,11 @@ ModelUpdates.Events = class Events {
     if (!this.callbackData["connect_model"][args.model])
       this.callbackData["connect_model"][args.model] = []
 
-    if (!this.modelCallbacks[args.model][args.id])
+    if (!this.modelCallbacks[args.model][args.id]) {
       this.modelCallbacks[args.model][args.id] = []
+      this.callbackData["connect_model"][args.model].push(args.id)
+    }
 
-    this.callbackData["connect_model"][args.model].push(args.id)
     this.modelCallbacks[args.model][args.id].push(args)
   }
 
@@ -28,6 +29,8 @@ ModelUpdates.Events = class Events {
   }
 
   connect() {
+    ModelUpdates.debug("Connecting: " + JSON.stringify(this.callbackData))
+
     var events = this
     App.cable.subscriptions.create(
       {channel: "ModelUpdates::EventsChannel", callback_data: this.callbackData},
