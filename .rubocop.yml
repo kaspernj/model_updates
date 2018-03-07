@@ -45,6 +45,9 @@ Metrics/ClassLength:
 Rails/FindEach:
   Enabled: false
 
+Rails/HttpPositionalArguments:
+  Enabled: false
+
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
 
