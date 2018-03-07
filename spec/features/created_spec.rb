@@ -6,6 +6,8 @@ describe "created" do
   it "adds an element to a list", js: true do
     visit tasks_path
 
+    sleep 1
+
     expect(page).to have_http_status :success
     expect(current_path).to eq tasks_path
     expect(page).to have_selector ".tasks-list"

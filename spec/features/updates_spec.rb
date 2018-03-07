@@ -6,6 +6,8 @@ describe "updates" do
   it "updates the attributes when changed", js: true do
     visit task_path(task)
 
+    sleep 1
+
     expect(page).to have_http_status :success
     expect(current_path).to eq task_path(task)
 
