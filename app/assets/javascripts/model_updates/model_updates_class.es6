@@ -1,4 +1,8 @@
 class ModelUpdates {
+  static connectChanged(model, id, callback) {
+    ModelUpdates.current().activator().connectUpdate(model, id, callback)
+  }
+
   static connectModel(modelName, modelId, eventName, callback) {
     ModelUpdates.current().events().connectModel({"model": modelName, "id": modelId, "name": eventName, "callback": function(args) {
       callback(args.args)

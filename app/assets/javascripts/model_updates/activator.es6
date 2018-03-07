@@ -3,8 +3,24 @@ ModelUpdates.Activator = class Activator {
     ModelUpdates.debug("Activator constructor")
 
     this.modelSubscriptions = {}
+    this.callbacks = {}
     this.connectedUpdates = {}
     this.connectedDestroyes = {}
+  }
+
+  connectUpdate(model, id, callback) {
+    if (!this.modelSubscriptions[model])
+      this.modelSubscriptions[model] = {}
+
+    this.modelSubscriptions[model][id] = true
+
+    if (!this.callbacks[model])
+      this.callbacks[model] = {}
+
+    if (!this.callbacks[model][id])
+      this.callbacks[model][id] = []
+
+    this.callbacks[model][id].push(callback)
   }
 
   update() {
