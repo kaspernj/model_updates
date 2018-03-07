@@ -57,7 +57,7 @@ ModelUpdates.Events = class Events {
     var modelId = args.id
     var callbacks = this.modelCallbacks[modelClass][modelId]
 
-    for(callbackNumber in callbacks) {
+    for(var callbackNumber in callbacks) {
       var callback = callbacks[callbackNumber]
 
       if (!callback.name || callback.name == args.event_name) {
@@ -70,7 +70,7 @@ ModelUpdates.Events = class Events {
     var modelClass = args.model
     var callbacks = this.modelClassCallbacks[modelClass]
 
-    for(callbackNumber in callbacks) {
+    for(var callbackNumber in callbacks) {
       var callback = callbacks[callbackNumber]
 
       if (!callback.name || callback.name == args.event_name) {

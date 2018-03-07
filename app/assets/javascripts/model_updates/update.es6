@@ -6,6 +6,19 @@ ModelUpdates.Update = class Update {
       {channel: "ModelUpdates::UpdateChannel", ids: args.ids},
       {
         received: function(json) {
+          if (ModelUpdates.current().activator().callbacks[json.model] && ModelUpdates.current().activator().callbacks[json.model][json.id]) {
+            var callbacks = ModelUpdates.current().activator().callbacks[json.model][json.id]
+
+            ModelUpdates.debug("Found callbacks for " + json.model + "(" + json.id + ")")
+
+            for(var key in callbacks) {
+              var callback = callbacks[key]
+              ModelUpdates.debug("Calling callback")
+              callback.apply(json)
+            }
+          } else {
+            console.log("No callbacks for " + json.model + "(" + json.id + ")")
+          }
 
           if (json.type == "destroy") {
             var elements = $(".model-updates[data-model-updates-model='" + json.model + "'][data-model-updates-id='" + json.id + "'][data-model-updates-remove-on-destroy='true']")
