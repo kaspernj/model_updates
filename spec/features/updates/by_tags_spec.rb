@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "updates" do
+describe "updates by tags" do
   let!(:task) { create :task }
 
   it "updates the attributes when changed", js: true do
