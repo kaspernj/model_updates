@@ -13,8 +13,8 @@ ModelUpdates.Update = class Update {
 
             for(var key in callbacks) {
               var callback = callbacks[key]
-              ModelUpdates.debug("Calling callback")
-              callback.apply(json)
+              ModelUpdates.debug("Calling callback: " + JSON.stringify(json))
+              callback(json)
             }
           } else {
             console.log("No callbacks for " + json.model + "(" + json.id + ")")

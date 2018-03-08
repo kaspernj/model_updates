@@ -107,6 +107,8 @@ Now that element should update automatically when the model is changed
 
 ## Callbacks
 
+### Updates
+
 You can also do a callback, once the value is changed.
 
 ```erb
@@ -136,6 +138,17 @@ data = {
 }
 ```
 
+You can also do this with pure JavaScript instead of tags like this:
+
+```js
+ModelUpdates.connectChanged("Task", taskId, function(data) {
+  $(".task-element").text(data.changes.name)
+})
+ModelUpdates.update()
+```
+
+### Creates
+
 You can receive create callbacks like this:
 
 ```js
@@ -143,6 +156,8 @@ ModelUpdates.Create.connect({model: "MyModel", onCreated: function(data) {
   console.log("New MyModel was created with ID: " + data.id)
 })
 ```
+
+### Destroys
 
 If you want an element automatically removed on destroy:
 ```erb
