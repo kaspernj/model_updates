@@ -8,3 +8,7 @@
 $(document).ready(function() {
   ModelUpdates.update()
 })
+
+document.addEventListener("turbolinks:load", function() {
+  ModelUpdates.update()
+})
