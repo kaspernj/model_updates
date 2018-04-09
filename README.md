@@ -1,7 +1,19 @@
 # ModelUpdates
 
-Rails gem to push updates to models into the frontend through ActionCable.
+Rails gem to push updates through models into the frontend through ActionCable easily like this:
 
+JavaScript:
+```js
+ModelUpdates.connectModel("User", userId, "changed-name", function(args) {
+  console.log("User changed his name to: " + args.new_name)
+})
+```
+
+Ruby:
+```ruby
+user = User.find(user_id)
+user.model_updates_call("changed-name", new_name: "test")
+```
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -190,25 +202,25 @@ ModelUpdates.update()
 Call an event on a specific model:
 ```ruby
 user = User.find(user_id)
-user.model_updates_call("changed-password", new_password: "test")
+user.model_updates_call("changed-name", new_name: "test")
 ```
 
 Connect to a specific model:
 ```js
-ModelUpdates.connectModel("User", userId, "changed-password", function(args) {
-  console.log("User changed his password to: " + args.new_password)
+ModelUpdates.connectModel("User", userId, "changed-name", function(args) {
+  console.log("User changed his name to: " + args.new_name)
 })
 ```
 
 Call an event on a model class:
 ```ruby
-User.model_updates_call("changed-password", new_password: "test")
+User.model_updates_call("changed-name", new_name: "test")
 ```
 
 Connect to events called on a models class:
 ```js
-ModelUpdates.connectModelClass("User", "changed-password", function(args) {
-  console.log("Someone his password to: " + args.new_password)
+ModelUpdates.connectModelClass("User", "changed-name", function(args) {
+  console.log("Someone his name to: " + args.new_name)
 })
 ```
 
