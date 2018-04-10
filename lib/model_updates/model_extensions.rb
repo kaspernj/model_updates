@@ -16,7 +16,7 @@ module ModelUpdates::ModelExtensions
         attribute_changes = {}
 
         args.fetch(:attributes).each do |attribute_name|
-          method_changed = "#{attribute_name}_changed?"
+          method_changed = "saved_changed_to_#{attribute_name}?"
           next if respond_to?(method_changed) && !__send__(method_changed)
           attribute_changes[attribute_name] = __send__(attribute_name)
         end
