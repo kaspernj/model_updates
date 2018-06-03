@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    model_updates (0.0.13)
+    model_updates (0.0.14)
       active_record_query_fixer (>= 0.0.3)
       rails (>= 5.1.0)
       sprockets-es6 (>= 0.9.2)
