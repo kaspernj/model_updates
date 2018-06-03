@@ -1,7 +1,7 @@
 class ModelUpdates::UpdateChannel < ApplicationCable::Channel
   def subscribed
     params[:ids].each do |model_class, ids|
-      models = model_class.safe_constantize.accessible_by(current_ability).where(id: ids)
+      models = model_class.safe_constantize.accessible_by(current_ability).where(id: ids).distinct.fix
 
       ids_found = {}
       models.find_each do |model|

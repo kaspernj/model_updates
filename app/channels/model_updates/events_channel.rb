@@ -8,7 +8,7 @@ private
 
   def connect_models
     params[:callback_data][:connect_model].each do |model_class_name, ids|
-      models = model_class_name.safe_constantize.accessible_by(current_ability).where(id: ids)
+      models = model_class_name.safe_constantize.accessible_by(current_ability).where(id: ids).distinct.fix
       models.find_each do |model|
         stream_model(model: model)
       end

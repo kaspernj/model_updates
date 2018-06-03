@@ -17,5 +17,6 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
   s.add_dependency "rails", ">= 5.1.0"
+  s.add_dependency "active_record_query_fixer", ">= 0.0.3"
   s.add_dependency "sprockets-es6", ">= 0.9.2"
 end
