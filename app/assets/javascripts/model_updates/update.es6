@@ -22,7 +22,8 @@ ModelUpdates.Update = class Update {
 
           if (json.type == "destroy") {
             var elements = document.querySelectorAll(".model-updates[data-model-updates-model='" + json.model + "'][data-model-updates-id='" + json.id + "'][data-model-updates-remove-on-destroy='true']")
-            for(var element in elements) {
+            for(var i = 0; i < elements.length; i++){
+              var element = elements[i]
               element.parentNode.removeChild(element)
             }
 
@@ -33,7 +34,7 @@ ModelUpdates.Update = class Update {
 
             for(var key in json.changes) {
               var elements = document.querySelectorAll(".model-updates[data-model-updates-model='" + json.model + "'][data-model-updates-id='" + json.id + "'][data-model-updates-key='" + key + "']")
-              for(i = 0; i < elements.length; i++) {
+              for(var i = 0; i < elements.length; i++) {
                 var element = elements[i]
 
                 if (element.dataset.modelUpdatesCallback) {
