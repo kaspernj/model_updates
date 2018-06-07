@@ -132,9 +132,9 @@ You can also do a callback, once the value is changed.
 ```js
 function myCallback(data) {
   if (data.value == "something") {
-    data.element.text("Test: " + data.value)
+    data.element.innerText = "Test: " + data.value
   } else {
-    data.element.text(data.value)
+    data.element.innerText = data.value
   }
 }
 ```
