@@ -21,8 +21,10 @@ ModelUpdates.Update = class Update {
           }
 
           if (json.type == "destroy") {
-            var elements = $(".model-updates[data-model-updates-model='" + json.model + "'][data-model-updates-id='" + json.id + "'][data-model-updates-remove-on-destroy='true']")
-            elements.remove()
+            var elements = document.querySelectorAll(".model-updates[data-model-updates-model='" + json.model + "'][data-model-updates-id='" + json.id + "'][data-model-updates-remove-on-destroy='true']")
+            for(var element in elements) {
+              element.parentNode.removeChild(element)
+            }
 
             if (args.onDestroyed)
               args.onDestroyed(json)
@@ -30,12 +32,12 @@ ModelUpdates.Update = class Update {
             ModelUpdates.debug("Received update for " + json.model + "(" + json.id + ")")
 
             for(var key in json.changes) {
-              var elements = $(".model-updates[data-model-updates-model='" + json.model + "'][data-model-updates-id='" + json.id + "'][data-model-updates-key='" + key + "']")
-              elements.each(function() {
-                var element = $(this)
+              var elements = document.querySelectorAll(".model-updates[data-model-updates-model='" + json.model + "'][data-model-updates-id='" + json.id + "'][data-model-updates-key='" + key + "']")
+              for(i = 0; i < elements.length; i++) {
+                var element = elements[i]
 
-                if (element.data("model-updates-callback")) {
-                  var function_to_call = element.data("model-updates-callback")
+                if (element.dataset.modelUpdatesCallback) {
+                  var function_to_call = element.dataset.modelUpdatesCallback
 
                   window[function_to_call]({
                     changes: json.changes,
@@ -46,12 +48,12 @@ ModelUpdates.Update = class Update {
                     value: json.changes[key]
                   })
                 } else if(json.changes[key]) {
-                  element.text(json.changes[key])
+                  element.innerText = json.changes[key]
                 } else {
                   // Needs to check if it has a value, else it will print out "null" instead of nothing.
-                  element.text("")
+                  element.innerText = ""
                 }
-              })
+              }
             }
           }
         }

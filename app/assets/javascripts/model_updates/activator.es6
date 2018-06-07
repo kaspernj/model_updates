@@ -32,21 +32,21 @@ ModelUpdates.Activator = class Activator {
   updateFoundElements() {
     ModelUpdates.debug("Activator#updateFoundElements called")
 
-    // Find all models that should be subscribed to
-    var that = this
-    $(".model-updates").each(function() {
-      var element = $(this)
+    var elements = document.querySelectorAll(".model-updates")
 
-      var model = element.data("model-updates-model")
-      var id = element.data("model-updates-id")
+    for(i = 0; i < elements.length; i++) {
+      var element = elements[i]
+
+      var model = element.dataset.modelUpdatesModel
+      var id = element.dataset.modelUpdatesId
 
       ModelUpdates.debug("Model found: " + model + "(" + id + ")")
 
-      if (!that.modelSubscriptions[model])
-        that.modelSubscriptions[model] = {}
+      if (!this.modelSubscriptions[model])
+        this.modelSubscriptions[model] = {}
 
-      that.modelSubscriptions[model][id] = true
-    })
+      this.modelSubscriptions[model][id] = true
+    }
   }
 
   updateSubscribedUpdates() {

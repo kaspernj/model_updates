@@ -5,9 +5,9 @@
 //= require model_updates/formatters
 //= require model_updates/update
 
-$(document).ready(function() {
+(function() {
   ModelUpdates.update()
-})
+})()
 
 document.addEventListener("turbolinks:load", function() {
   ModelUpdates.update()
