@@ -34,7 +34,7 @@ ModelUpdates.Activator = class Activator {
 
     var elements = document.querySelectorAll(".model-updates")
 
-    for(i = 0; i < elements.length; i++) {
+    for(var i = 0; i < elements.length; i++) {
       var element = elements[i]
 
       var model = element.dataset.modelUpdatesModel
