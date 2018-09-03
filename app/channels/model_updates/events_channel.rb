@@ -7,10 +7,12 @@ class ModelUpdates::EventsChannel < ApplicationCable::Channel
 private
 
   def connect_models
-    params[:callback_data][:connect_model].each do |model_class_name, ids|
-      models = model_class_name.safe_constantize.accessible_by(current_ability).where(id: ids).distinct.fix
-      models.find_each do |model|
-        stream_model(model: model)
+    params[:callback_data][:connect_model].each do |model_class_name, events|
+      events.each do |event_name, ids|
+        models = model_class_name.safe_constantize.accessible_by(current_ability).where(id: ids).distinct.fix
+        models.find_each do |model|
+          stream_model(event: event_name, model: model)
+        end
       end
     end
   end
@@ -21,8 +23,8 @@ private
     end
   end
 
-  def stream_model(model:)
-    channel_name = "model_updates_events_model_#{model.class.name}_model_#{model.id}"
+  def stream_model(event:, model:)
+    channel_name = "model_updates_events_model_#{model.class.name}_model_#{model.id}_event_#{event}"
     stream_from(channel_name, coder: ActiveSupport::JSON) do |data|
       transmit data
     end

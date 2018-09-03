@@ -1,4 +1,4 @@
-ModelUpdates.Events = class Events {
+ModelUpdates.Events = class ModelUpdatesEvents {
   constructor() {
     this.modelCallbacks = {}
     this.modelClassCallbacks = {}
@@ -10,13 +10,18 @@ ModelUpdates.Events = class Events {
       this.modelCallbacks[args.model] = {}
 
     if (!this.callbackData["connect_model"][args.model])
-      this.callbackData["connect_model"][args.model] = []
+      this.callbackData["connect_model"][args.model] = {}
 
-    if (!this.modelCallbacks[args.model][args.id]) {
+    if (!this.modelCallbacks[args.model][args.id])
       this.modelCallbacks[args.model][args.id] = []
-      this.callbackData["connect_model"][args.model].push(args.id)
-    }
 
+    if (!this.callbackData["connect_model"][args.model])
+      this.callbackData["connect_model"][args.model] = {}
+
+    if (!this.callbackData["connect_model"][args.model][args.name])
+      this.callbackData["connect_model"][args.model][args.name] = []
+
+    this.callbackData["connect_model"][args.model][args.name].push(args.id)
     this.modelCallbacks[args.model][args.id].push(args)
   }
 

@@ -1,4 +1,4 @@
-ModelUpdates.Update = class Update {
+ModelUpdates.Update = class ModelUpdatesUpdate {
   static connect(args) {
     ModelUpdates.debug("Connecting to update channel for " + JSON.stringify(args.ids))
 
