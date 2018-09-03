@@ -1,4 +1,4 @@
-ModelUpdates.Activator = class Activator {
+ModelUpdates.Activator = class ModelUpdatesActivator {
   constructor() {
     ModelUpdates.debug("Activator constructor")
 
