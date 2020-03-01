@@ -12,7 +12,7 @@ group :development, :test do
   gem "capybara-webkit", "1.14.0"
   gem "factory_girl_rails", "4.8.0"
   gem "jquery-rails", "4.3.1"
-  gem "pry-rails", "0.3.6"
+  gem "pry-rails", "0.3.9"
   gem "puma", "3.8.2"
   gem "redis", "3.3.3"
   gem "rspec-rails", "3.6.0"
