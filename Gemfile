@@ -10,7 +10,7 @@ group :development, :test do
   gem "cancancan", "3.0.2"
   gem "capybara", "2.13.0"
   gem "capybara-webkit", "1.15.1"
-  gem "factory_girl_rails", "4.8.0"
+  gem "factory_girl_rails", "4.9.0"
   gem "jquery-rails", "4.3.5"
   gem "pry-rails", "0.3.9"
   gem "puma", "3.8.2"
