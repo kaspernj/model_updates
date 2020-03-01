@@ -9,7 +9,7 @@ describe "updates by tags" do
     sleep 1
 
     expect(page).to have_http_status :success
-    expect(page).to have_current_path task_path(task), only_path: true
+    expect(page).to have_current_path task_path(task), ignore_query: true
 
     task.update!(name: "New name")
 
