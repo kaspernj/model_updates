@@ -15,7 +15,7 @@ group :development, :test do
   gem "pry-rails", "0.3.9"
   gem "puma", "3.8.2"
   gem "redis", "3.3.3"
-  gem "rspec-rails", "3.6.0"
+  gem "rspec-rails", "3.9.0"
   gem "rubocop", "0.49.0", require: false
   gem "sqlite3", "1.3.13"
   gem "waitutil", "0.2.1"
