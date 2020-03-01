@@ -9,9 +9,9 @@ describe "created" do
     sleep 1
 
     expect(page).to have_http_status :success
-    expect(current_path).to eq tasks_path
+    expect(page).to have_current_path tasks_path, ignore_query: true
     expect(page).to have_selector ".tasks-list"
-    expect(page).to_not have_selector ".task-element"
+    expect(page).not_to have_selector ".task-element"
 
     task
 
