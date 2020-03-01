@@ -6,7 +6,7 @@ source "https://rubygems.org"
 gemspec
 
 group :development, :test do
-  gem "best_practice_project", "0.0.10", require: false
+  gem "best_practice_project", "0.0.11", require: false
   gem "cancancan", "3.0.2"
   gem "capybara", "2.13.0"
   gem "capybara-webkit", "1.14.0"
