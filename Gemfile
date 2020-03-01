@@ -11,7 +11,7 @@ group :development, :test do
   gem "capybara", "2.13.0"
   gem "capybara-webkit", "1.15.1"
   gem "factory_girl_rails", "4.8.0"
-  gem "jquery-rails", "4.3.1"
+  gem "jquery-rails", "4.3.5"
   gem "pry-rails", "0.3.9"
   gem "puma", "3.8.2"
   gem "redis", "3.3.3"
