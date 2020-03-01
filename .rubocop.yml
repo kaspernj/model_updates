@@ -19,7 +19,7 @@ Layout/EmptyLines:
 Layout/EndAlignment:
   EnforcedStyleAlignWith: variable
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 160
 
 Layout/MultilineMethodCallIndentation:
