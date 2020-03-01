@@ -6,6 +6,7 @@ class ModelUpdates::UpdateChannel < ApplicationCable::Channel
       ids_found = {}
       models.find_each do |model|
         next if ids_found.key?(model.id)
+
         ids_found[model.id] = true
 
         stream_for model

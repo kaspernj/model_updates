@@ -6,17 +6,20 @@ source "https://rubygems.org"
 gemspec
 
 group :development, :test do
-  gem "best_practice_project", "0.0.10", require: false
+  gem "best_practice_project", "0.0.11", require: false
   gem "cancancan", "3.0.2"
   gem "capybara", "2.13.0"
-  gem "capybara-webkit", "1.14.0"
-  gem "factory_girl_rails", "4.8.0"
-  gem "jquery-rails", "4.3.1"
+  gem "capybara-webkit", "1.15.1"
+  gem "factory_girl_rails", "4.9.0"
+  gem "jquery-rails", "4.3.5"
   gem "pry-rails", "0.3.9"
   gem "puma", "3.8.2"
   gem "redis", "3.3.3"
-  gem "rspec-rails", "3.6.0"
-  gem "rubocop", "0.49.0", require: false
+  gem "rspec-rails", "3.9.0"
+  gem "rubocop", require: false
+  gem "rubocop-performance", require: false
+  gem "rubocop-rails", require: false
+  gem "rubocop-rspec", require: false
   gem "sqlite3", "1.3.13"
   gem "waitutil", "0.2.1"
 end

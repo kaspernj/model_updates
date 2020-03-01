@@ -5,14 +5,22 @@ AllCops:
     - db/schema.rb
     - spec/dummy/db/schema.rb
 
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
 Layout/AccessModifierIndentation:
   EnforcedStyle: outdent
 
-Layout/AlignParameters:
-  EnforcedStyle: with_fixed_indentation
-
 Layout/EmptyLines:
   Enabled: false
+
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: variable
+
+Metrics/LineLength:
+  Max: 160
 
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
@@ -20,17 +28,14 @@ Layout/MultilineMethodCallIndentation:
 Layout/MultilineOperationIndentation:
   EnforcedStyle: indented
 
+Layout/ParameterAlignment:
+  EnforcedStyle: with_fixed_indentation
+
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 
-Lint/EndAlignment:
-  EnforcedStyleAlignWith: variable
-
 Metrics/CyclomaticComplexity:
   Max: 10
-
-Metrics/LineLength:
-  Max: 160
 
 Metrics/MethodLength:
   Max: 50
@@ -43,6 +48,15 @@ Metrics/ClassLength:
 
 # .find_each is not the same as .each
 Rails/FindEach:
+  Enabled: false
+
+RSpec/DescribeClass:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MultipleExpectations:
   Enabled: false
 
 Rails/HttpPositionalArguments:
@@ -64,6 +78,9 @@ Style/FrozenStringLiteralComment:
 Style/GuardClause:
   Enabled: false
 
+Style/HashEachMethods:
+  Enabled: true
+
 Style/LambdaCall:
   Enabled: false
 
@@ -84,6 +101,12 @@ Style/SignalException:
 
 Style/SymbolArray:
   Enabled: false
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
 
 Style/TrivialAccessors:
   ExactNameMatch: true
