@@ -9,7 +9,7 @@ describe "destroys" do
     sleep 1
 
     expect(page).to have_http_status :success
-    expect(page).to have_current_path task_path(task), ignore_query: true
+    expect(page).to have_current_path task_path(task), only_path: true
     expect(page).to have_selector ".model-updates[data-model-updates-model='Task'][data-model-updates-id='#{task.id}']"
 
     task.destroy!
