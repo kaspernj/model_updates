@@ -12,7 +12,7 @@ module ModelUpdates::ModelExtensions
       model_updates_data[:attributes] = args.fetch(:attributes)
 
       # Need to remember what changes before callbacks, since it might get changed by gems like AwesomeNestedSet before after_commit is called
-      before_save on: :update do
+      before_update do
         attribute_changes = {}
 
         args.fetch(:attributes).each do |attribute_name|
