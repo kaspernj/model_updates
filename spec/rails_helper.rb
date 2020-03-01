@@ -14,13 +14,13 @@ Capybara::Webkit.configure do |config|
   config.raise_javascript_errors = true
 end
 
-FactoryGirl.definition_file_paths << File.join(File.dirname(__FILE__), "factories")
-FactoryGirl.find_definitions
+FactoryBot.definition_file_paths << File.join(File.dirname(__FILE__), "factories")
+FactoryBot.find_definitions
 
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
