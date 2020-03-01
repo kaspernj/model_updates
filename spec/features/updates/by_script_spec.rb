@@ -7,7 +7,7 @@ describe "updates by script" do
     visit updates_by_script_task_path(task)
 
     expect(page).to have_http_status :success
-    expect(current_path).to eq updates_by_script_task_path(task)
+    expect(page).to have_current_path updates_by_script_task_path(task), only_path: true
     expect(find(".task-element").text).to eq "Test task"
 
     sleep 1

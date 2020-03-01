@@ -9,8 +9,8 @@ describe "events" do
     sleep 1
 
     expect(page).to have_http_status :success
-    expect(current_path).to eq events_task_path(task)
-    expect(page).to_not have_selector ".task-element"
+    expect(page).to have_current_path events_task_path(task), only_path: true
+    expect(page).not_to have_selector ".task-element"
 
     task.model_updates_call("test-event", id: task.id, text: "Hello world")
 

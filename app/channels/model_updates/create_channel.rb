@@ -6,6 +6,7 @@ class ModelUpdates::CreateChannel < ApplicationCable::Channel
     stream_from(channel_name, coder: ActiveSupport::JSON) do |data|
       model = model_class.accessible_by(current_ability).find(data.fetch("id"))
       next unless model
+
       transmit data
     end
   end
