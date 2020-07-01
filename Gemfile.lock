@@ -170,7 +170,7 @@ GEM
       thor (>= 0.20.3, < 2.0)
     rainbow (3.0.0)
     rake (13.0.1)
-    redis (4.1.4)
+    redis (4.2.1)
     regexp_parser (1.7.1)
     rexml (3.2.4)
     rspec-core (3.9.2)
