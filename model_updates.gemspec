@@ -5,14 +5,15 @@ require "model_updates/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "model_updates"
-  s.version     = ModelUpdates::VERSION
-  s.authors     = ["kaspernj"]
-  s.email       = ["kaspernj@gmail.com"]
-  s.homepage    = "https://github.com/kaspernj/model_updates"
-  s.summary     = "Rails gem to push updates to models into the frontend through ActionCable"
+  s.name = "model_updates"
+  s.version = ModelUpdates::VERSION
+  s.authors = ["kaspernj"]
+  s.email = ["kaspernj@gmail.com"]
+  s.homepage = "https://github.com/kaspernj/model_updates"
+  s.summary = "Rails gem to push updates to models into the frontend through ActionCable"
   s.description = "Rails gem to push updates to models into the frontend through ActionCable"
-  s.license     = "MIT"
+  s.license = "MIT"
+  s.required_ruby_version = ">= 2.5.7"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
