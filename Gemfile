@@ -12,6 +12,7 @@ group :development, :test do
   gem "capybara-webkit"
   gem "factory_bot_rails"
   gem "jquery-rails"
+  gem "matrix"
   gem "pry-rails"
   gem "puma"
   gem "redis"
