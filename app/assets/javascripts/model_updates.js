@@ -12,3 +12,5 @@
 document.addEventListener("turbolinks:load", function() {
   ModelUpdates.update()
 })
+
+// Keep the client asset lane anchored to this directory.
