@@ -8,7 +8,7 @@ gemspec
 group :development, :test do
   gem "best_practice_project", require: false
   gem "cancancan"
-  gem "capybara"
+  gem "capybara", "~> 3.38.0"
   gem "capybara-webkit"
   gem "factory_bot_rails"
   gem "jquery-rails"
