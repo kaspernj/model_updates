@@ -23,6 +23,7 @@ group :development, :test do
   gem "rubocop-rspec", require: false
   gem "sqlite3"
   gem "waitutil"
+  gem "webrick"
 end
 
 # Declare any dependencies that are still in development here instead of in
