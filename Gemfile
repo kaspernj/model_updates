@@ -15,7 +15,7 @@ group :development, :test do
   gem "matrix"
   gem "pry-rails"
   gem "puma"
-  gem "redis"
+  gem "redis", "< 5"
   gem "rspec-rails"
   gem "rubocop", require: false
   gem "rubocop-performance", require: false
