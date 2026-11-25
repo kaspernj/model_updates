@@ -3,7 +3,7 @@ require "rails_helper"
 describe "created" do
   let(:task) { create :task }
 
-  it "adds an element to a list", js: true do
+  it "adds an element to a list", :js do
     visit tasks_path
 
     sleep 1

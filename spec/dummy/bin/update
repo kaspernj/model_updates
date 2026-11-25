@@ -13,16 +13,16 @@ FileUtils.chdir APP_ROOT do
   # This script is a way to update your development environment automatically.
   # Add necessary update steps to this file.
 
-  puts "== Installing dependencies =="
+  warn "== Installing dependencies =="
   system! "gem install bundler --conservative"
   system("bundle check") || system!("bundle install")
 
-  puts "\n== Updating database =="
+  warn "\n== Updating database =="
   system! "bin/rails db:migrate"
 
-  puts "\n== Removing old logs and tempfiles =="
+  warn "\n== Removing old logs and tempfiles =="
   system! "bin/rails log:clear tmp:clear"
 
-  puts "\n== Restarting application server =="
+  warn "\n== Restarting application server =="
   system! "bin/rails restart"
 end

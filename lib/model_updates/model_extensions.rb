@@ -31,11 +31,11 @@ module ModelUpdates::ModelExtensions
 
         if attribute_changes.any?
           ModelUpdates::UpdateChannel.broadcast_to(model, {
-            id: id,
-            model: model.class.name,
-            changes: attribute_changes,
-            type: :update
-          })
+                                                     id: id,
+                                                     model: model.class.name,
+                                                     changes: attribute_changes,
+                                                     type: :update
+                                                   })
         end
       end
     end
@@ -50,9 +50,9 @@ module ModelUpdates::ModelExtensions
         end
 
         ActionCable.server.broadcast(channel_name, {
-          id: id,
-          attributes: attributes
-        })
+                                       id: id,
+                                       attributes: attributes
+                                     })
       end
     end
 
@@ -64,32 +64,32 @@ module ModelUpdates::ModelExtensions
         end
 
         ModelUpdates::UpdateChannel.broadcast_to(model, {
-          id: id,
-          model: model.class.name,
-          attributes: attributes,
-          type: :destroy
-        })
+                                                   id: id,
+                                                   model: model.class.name,
+                                                   attributes: attributes,
+                                                   type: :destroy
+                                                 })
       end
     end
 
     def model_updates_call(event_name, args = {})
       ActionCable.server.broadcast("model_updates_events_class_#{name}", {
-        event_name: event_name,
-        model: name,
-        callback_type: "model_class",
-        args: args
-      })
+                                     event_name: event_name,
+                                     model: name,
+                                     callback_type: "model_class",
+                                     args: args
+                                   })
     end
   end
 
   def model_updates_call(event_name, args = {})
     ActionCable.server.broadcast("model_updates_events_model_#{self.class.name}_model_#{id}_event_#{event_name}", {
-      event_name: event_name,
-      id: id,
-      model: self.class.name,
-      callback_type: "model",
-      args: args
-    })
+                                   event_name: event_name,
+                                   id: id,
+                                   model: self.class.name,
+                                   callback_type: "model",
+                                   args: args
+                                 })
   end
 
   def model_updates_attrs(key, more = {})

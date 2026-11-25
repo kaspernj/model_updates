@@ -13,7 +13,8 @@ Gem::Specification.new do |s|
   s.summary = "Rails gem to push updates to models into the frontend through ActionCable"
   s.description = "Rails gem to push updates to models into the frontend through ActionCable"
   s.license = "MIT"
-  s.required_ruby_version = ">= 2.5.7"
+  s.required_ruby_version = ">= 3.2"
+  s.metadata["rubygems_mfa_required"] = "true"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
