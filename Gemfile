@@ -18,10 +18,10 @@ group :development, :test do
   gem "puma"
   gem "redis", "< 5"
   gem "rspec-rails"
-  gem "rubocop", "~> 1.60.0", require: false
-  gem "rubocop-performance", "~> 1.21.0", require: false
-  gem "rubocop-rails", "~> 2.25.0", require: false
-  gem "rubocop-rspec", "~> 2.27.0", require: false
+  gem "rubocop", ">= 1.92", require: false
+  gem "rubocop-performance", ">= 1.27", require: false
+  gem "rubocop-rails", ">= 2.38", require: false
+  gem "rubocop-rspec", ">= 3.10", require: false
   gem "sqlite3"
   gem "waitutil"
   gem "webrick"
