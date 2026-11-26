@@ -10,6 +10,7 @@ group :development, :test do
   gem "cancancan"
   gem "capybara", "~> 3.38.0"
   gem "capybara-webkit"
+  gem "concurrent-ruby", "1.3.4"
   gem "factory_bot_rails"
   gem "jquery-rails"
   gem "matrix"
