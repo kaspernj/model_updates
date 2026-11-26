@@ -8,21 +8,23 @@ gemspec
 group :development, :test do
   gem "best_practice_project", require: false
   gem "cancancan"
-  gem "capybara"
+  gem "capybara", "~> 3.38.0"
   gem "capybara-webkit"
+  gem "concurrent-ruby", "1.3.4"
   gem "factory_bot_rails"
   gem "jquery-rails"
   gem "matrix"
   gem "pry-rails"
   gem "puma"
-  gem "redis"
+  gem "redis", "< 5"
   gem "rspec-rails"
-  gem "rubocop", require: false
-  gem "rubocop-performance", require: false
-  gem "rubocop-rails", require: false
-  gem "rubocop-rspec", require: false
+  gem "rubocop", ">= 1.92", require: false
+  gem "rubocop-performance", ">= 1.27", require: false
+  gem "rubocop-rails", ">= 2.38", require: false
+  gem "rubocop-rspec", ">= 3.10", require: false
   gem "sqlite3"
   gem "waitutil"
+  gem "webrick"
 end
 
 # Declare any dependencies that are still in development here instead of in

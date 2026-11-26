@@ -5,9 +5,9 @@ AllCops:
     - db/schema.rb
     - spec/dummy/db/schema.rb
   NewCops: enable
-  TargetRubyVersion: 2.5.7
+  TargetRubyVersion: 3.2
 
-require:
+plugins:
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec

@@ -3,7 +3,7 @@ require "rails_helper"
 describe "destroys" do
   let!(:task) { create :task }
 
-  it "removes the element when destroyed", js: true do
+  it "removes the element when destroyed", :js do
     visit task_path(task)
 
     sleep 1

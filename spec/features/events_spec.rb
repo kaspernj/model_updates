@@ -3,7 +3,7 @@ require "rails_helper"
 describe "events" do
   let(:task) { create :task }
 
-  it "reacts to events", js: true do
+  it "reacts to events", :js do
     visit events_task_path(task)
 
     sleep 1
